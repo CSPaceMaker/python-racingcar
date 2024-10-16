@@ -13,6 +13,9 @@ class InputHandler:
         
         # 공백 제거 후 리스트 반환
         return [name.strip() for name in car_names]
+    @staticmethod
+    def get_attempts():
+        attempts = int(input("시도할 횟수는 몇 회인가요? "))
 
 
 def main():
@@ -24,6 +27,7 @@ def main():
     print("프로그램이 시작되었습니다.")
 
     InputHandler.get_car_names()
+    InputHandler.get_attempts()
 
 
 if __name__ == "__main__":
