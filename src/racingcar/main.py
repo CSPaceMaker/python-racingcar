@@ -1,3 +1,14 @@
+import random
+
+class Race:
+    def create_cars(car_names, self):
+        """
+        입력된 이름에 맞춰 자동차 객체를 생성.
+        각 자동차의 이름과 전진한 거리를 {차이름: 거리} 형태로 저장.
+        """
+        self.cars = {name: 0 for name in car_names}  # 차이름을 키, 0(거리)을 값으로 저장
+        return self.cars
+
 def main():
     """
     프로그램의 진입점 함수.
