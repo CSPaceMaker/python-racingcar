@@ -49,11 +49,16 @@ def main():
         car_names = InputHandler.get_car_names()
     except ValueError:
         return
+
+    cars = []
+    for car_name in car_names:
+        cars.append(Car(car_name))
     
     try:
-        InputHandler.get_attempts()
+        attempts = InputHandler.get_attempts()
     except ValueError:
         return
+
 
 if __name__ == "__main__":
     # 프로그램이 직접 실행될 때만 main() 함수를 호출
