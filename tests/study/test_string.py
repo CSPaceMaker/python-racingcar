@@ -8,12 +8,13 @@ def test_split_메서드로_값_구분():
     결과로 분리된 값이 예상대로 반환되는지 확인합니다.
     """
     input_str = "1,2"
-    result = input_str.split(',')
+    result = input_str.split(",")
 
     # 값이 올바르게 포함되어 있는지 확인
     assert "2" in result
     # 정확하게 구분되었는지 확인
     assert result == ["1", "2"]
+
 
 # split 메서드 사용 시 구분자가 없는 경우의 테스트
 def test_split_메서드_구분자_없을때_그대로_반환():
@@ -22,10 +23,11 @@ def test_split_메서드_구분자_없을때_그대로_반환():
     입력값이 그대로 반환되는지 확인하는 테스트입니다.
     """
     input_str = "1"
-    result = input_str.split(',')
+    result = input_str.split(",")
 
     # 값이 그대로 반환되었는지 확인
     assert "1" in result
+
 
 # substring 메서드를 사용하여 특정 구간 값을 반환하는 테스트
 def test_substring_메서드로_특정_구간_반환():
@@ -39,6 +41,7 @@ def test_substring_메서드로_특정_구간_반환():
     # 구간이 올바르게 추출되었는지 확인
     assert result == "1,2"
 
+
 # charAt 메서드를 사용하여 특정 위치의 문자를 찾는 테스트
 def test_charAt_메서드_특정_위치_문자_찾기():
     """
@@ -49,7 +52,8 @@ def test_charAt_메서드_특정_위치_문자_찾기():
     char_at_element = input_str[0]  # Python에서는 인덱스 접근을 통해 첫 번째 문자 추출
 
     # 첫 번째 문자가 'a'인지 확인
-    assert char_at_element == 'a'
+    assert char_at_element == "a"
+
 
 # charAt 메서드에서 문자열의 길이보다 큰 위치의 문자를 찾을 때 예외 처리 테스트
 def test_charAt_메서드_위치_잘못된_경우_예외():
