@@ -46,6 +46,10 @@ class Race:
             random_number = random.randint(1, 9)
             if random_number>=4:
                 car.move()
+            self.print_dis(car)
+            print()
+        print()
+        
     def get_winner(self) :
         winner = []
         max_distance = -1
@@ -58,6 +62,11 @@ class Race:
                 winner.append(car.get_name())
         
         return winner
+    
+    def print_dis(self, car) :
+        print("{} : ".format(car.get_name()), end="")
+        for i in range (car.get_distance()) :
+            print("-", end = "")
 
     
 def game(cars, attempts):
