@@ -86,19 +86,13 @@ def main():
     # 프로그램의 메인 로직을 여기에 구현
     print("프로그램이 시작되었습니다.")
 
-    try:
-        car_names = InputHandler.get_car_names()
-    except ValueError:
-        return
+    car_names = InputHandler.get_car_names()
 
     cars = []
     for car_name in car_names:
         cars.append(Car(car_name))
     
-    try:
-        attempts = InputHandler.get_attempts()
-    except ValueError:
-        return
+    attempts = InputHandler.get_attempts()
     
     game(cars, attempts)
 
