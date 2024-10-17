@@ -85,7 +85,6 @@ def main():
 
     cars = []
     for car_name in car_names:
-        print(car_name)
         cars.append(Car(car_name))
     
     try:
