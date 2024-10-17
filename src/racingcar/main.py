@@ -48,7 +48,6 @@ class Race:
                 car.move()
             self.print_dis(car)
             print()
-        print()
         
     def get_winner(self) :
         winner = []
