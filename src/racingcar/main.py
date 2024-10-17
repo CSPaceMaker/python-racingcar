@@ -40,7 +40,10 @@ class Race:
     def __init__(cars, self):
         self.cars = cars
     def play(self):
-        print()
+        for car in self.cars:
+            random_number = random.sample(range(1, 10))
+            if random_number>=4:
+                car.move()
     
 def game(cars, attempts):
     race = Race(cars)
