@@ -28,22 +28,37 @@ class Car:
         입력된 이름에 맞춰 자동차 객체를 생성.
         각 자동차의 이름과 전진한 거리를 {차이름: 거리} 형태로 저장.
         """
-    def __init__(car_name, self):
+    def __init__(self, car_name):
         self.name = car_name
         self.distance = 0
     def move(self):
         self.distance+=1
     def get_distance(self):
         return self.distance
+    def get_name(self):
+        return self.name
 
 class Race:
-    def __init__(cars, self):
+    def __init__(self, cars):
         self.cars = cars
     def play(self):
         for car in self.cars:
-            random_number = random.sample(range(1, 10))
+            random_number = random.randint(1, 9)
             if random_number>=4:
                 car.move()
+    def get_winner(self) :
+        winner = []
+        max_distance = -1
+        for car in self.cars:
+            if car.get_distance() > max_distance :
+                max_distance = car.get_distance()
+        
+        for car in self.cars:
+            if car.get_distance() == max_distance:
+                winner.append(car.get_name())
+        
+        return winner
+
     
 def game(cars, attempts):
     race = Race(cars)
@@ -51,6 +66,9 @@ def game(cars, attempts):
     while attempts:
         attempts-=1
         race.play()
+
+    winner = race.get_winner()
+    print(winner)
 
 def main():
     """
