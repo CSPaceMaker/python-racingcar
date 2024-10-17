@@ -1,6 +1,9 @@
-import pytest
 from unittest.mock import patch
+
+import pytest
+
 from racingcar.main import main
+
 
 # 전진 및 정지 동작 테스트
 def test_전진_및_정지(capsys):

@@ -1,5 +1,6 @@
 import pytest
 
+
 # split 메서드를 사용하여 주어진 값을 구분하는 테스트
 def test_split_메서드로_값_구분():
     """

@@ -1,5 +1,6 @@
 import random
 
+
 class InputHandler:
     @staticmethod
     def get_car_names():
