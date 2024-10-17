@@ -19,7 +19,7 @@ class InputHandler:
             attempts = int(input("시도할 횟수는 몇 회인가요? "))
         except ValueError:
             raise ValueError("시도 횟수는 숫자여야 합니다.")
-        if attempts <= 1:
+        if attempts < 1:
             raise ValueError("시도 횟수는 1 이상이어야 합니다.")
         return attempts
 
@@ -60,7 +60,7 @@ class Race:
         for car in self.cars:
             if car.get_distance() == max_distance:
                 winner.append(car.get_name())
-        
+
         return winner
     
     def print_dis(self, car) :
