@@ -1,6 +1,5 @@
 import random
 
-
 class InputHandler:
     @staticmethod
     def get_car_names():
@@ -23,15 +22,20 @@ class InputHandler:
         if attempts < 1:
             raise ValueError("시도 횟수는 1 이상이어야 합니다.")
         return attempts
-      
-class Race:
-    def create_cars(car_names, self):
-        """
+
+class Car:
+    """
         입력된 이름에 맞춰 자동차 객체를 생성.
         각 자동차의 이름과 전진한 거리를 {차이름: 거리} 형태로 저장.
         """
-        self.cars = {name: 0 for name in car_names}  # 차이름을 키, 0(거리)을 값으로 저장
-        return self.cars
+    def __init__(car_name, self):
+        self.name = car_name
+        self.distance = 0
+    def move(self):
+        self.distance+=1
+    def get_distance(self):
+        return self.distance
+
 
 def main():
     """
@@ -41,8 +45,19 @@ def main():
     # 프로그램의 메인 로직을 여기에 구현
     print("프로그램이 시작되었습니다.")
 
-    InputHandler.get_car_names()
-    InputHandler.get_attempts()
+    try:
+        car_names = InputHandler.get_car_names()
+    except ValueError:
+        return
+
+    cars = []
+    for car_name in car_names:
+        cars.append(Car(car_name))
+    
+    try:
+        attempts = InputHandler.get_attempts()
+    except ValueError:
+        return
 
 
 if __name__ == "__main__":
