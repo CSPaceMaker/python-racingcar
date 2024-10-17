@@ -36,6 +36,18 @@ class Car:
     def get_distance(self):
         return self.distance
 
+class Race:
+    def __init__(cars, self):
+        self.cars = cars
+    def play(self):
+        print()
+    
+def game(cars, attempts):
+    race = Race(cars)
+
+    while attempts:
+        attempts-=1
+        race.play()
 
 def main():
     """
@@ -58,7 +70,8 @@ def main():
         attempts = InputHandler.get_attempts()
     except ValueError:
         return
-
+    
+    game(cars, attempts)
 
 if __name__ == "__main__":
     # 프로그램이 직접 실행될 때만 main() 함수를 호출
