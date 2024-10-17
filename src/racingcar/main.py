@@ -76,7 +76,7 @@ def game(cars, attempts):
         race.play()
 
     winner = race.get_winner()
-    print(winner)
+    print("최종 우승자 : " + ", ".join(winner))
 
 def main():
     """
