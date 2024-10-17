@@ -13,6 +13,7 @@ class InputHandler:
         
         # 공백 제거 후 리스트 반환
         return [name.strip() for name in car_names]
+    
     @staticmethod
     def get_attempts():
         try:
@@ -25,77 +26,70 @@ class InputHandler:
 
 class Car:
     """
-        입력된 이름에 맞춰 자동차 객체를 생성.
-        각 자동차의 이름과 전진한 거리를 {차이름: 거리} 형태로 저장.
-        """
+    입력된 이름에 맞춰 자동차 객체를 생성.
+    각 자동차의 이름과 전진한 거리를 {차이름: 거리} 형태로 저장.
+    """
     def __init__(self, car_name):
         self.name = car_name
         self.distance = 0
+
     def move(self):
-        self.distance+=1
+        self.distance += 1
+
     def get_distance(self):
         return self.distance
+
     def get_name(self):
         return self.name
 
 class Race:
     def __init__(self, cars):
         self.cars = cars
-    def play(self):
-        for car in self.cars:
-            random_number = random.randint(1, 9)
-            if random_number>=4:
-                car.move()
-            self.print_dis(car)
-            print()
-        
-    def get_winner(self) :
-        winner = []
-        max_distance = -1
-        for car in self.cars:
-            if car.get_distance() > max_distance :
-                max_distance = car.get_distance()
-        
-        for car in self.cars:
-            if car.get_distance() == max_distance:
-                winner.append(car.get_name())
 
-        return winner
-    
-    def print_dis(self, car) :
-        print("{} : ".format(car.get_name()), end="")
-        for i in range (car.get_distance()) :
-            print("-", end = "")
+    def move_car(self, car):
+        """자동차가 전진할지 여부를 결정하는 로직"""
+        random_number = random.randint(1, 9)
+        if random_number >= 4:
+            car.move()
 
-    
+    def play_round(self):
+        """한 라운드 진행"""
+        for car in self.cars:
+            self.move_car(car)
+
+    def print_results(self):
+        """각 자동차의 결과를 출력"""
+        for car in self.cars:
+            print(f"{car.get_name()} : {'-' * car.get_distance()}")
+
+    def get_winner(self):
+        """가장 멀리 간 자동차를 찾는 로직"""
+        max_distance = max(car.get_distance() for car in self.cars)
+        return [car.get_name() for car in self.cars if car.get_distance() == max_distance]
+
 def game(cars, attempts):
+    """전체 게임 로직을 처리하는 함수"""
     race = Race(cars)
 
     while attempts:
-        attempts-=1
-        race.play()
+        attempts -= 1
+        race.play_round()  # 한 라운드 실행
+        race.print_results()  # 결과 출력
+        print()  # 라운드 간 공백 출력
 
-    winner = race.get_winner()
-    print("최종 우승자 : " + ", ".join(winner))
+    winners = race.get_winner()
+    print("최종 우승자 : " + ", ".join(winners))
 
 def main():
-    """
-    프로그램의 진입점 함수.
-    여기에서 전체 프로그램 로직을 시작합니다.
-    """
-    # 프로그램의 메인 로직을 여기에 구현
+    """프로그램의 진입점 함수"""
     print("프로그램이 시작되었습니다.")
-
+    
     car_names = InputHandler.get_car_names()
-
-    cars = []
-    for car_name in car_names:
-        cars.append(Car(car_name))
+    cars = [Car(car_name) for car_name in car_names]
     
     attempts = InputHandler.get_attempts()
     
     game(cars, attempts)
 
 if __name__ == "__main__":
-    # 프로그램이 직접 실행될 때만 main() 함수를 호출
     main()
