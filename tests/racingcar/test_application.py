@@ -35,3 +35,43 @@ def test_이름_길이_예외():
             main()  # 프로그램 실행
 
 # 추가적인 시나리오에 대한 테스트를 필요에 따라 작성할 수 있습니다.
+
+# 여러 번 경주 진행 시나리오 테스트
+def test_여러_번_경주(capsys):
+    """
+    여러 시도 횟수가 주어졌을 때 경주가 정상적으로 진행되는지 테스트합니다.
+    """
+    with patch('random.randint', side_effect=[4, 4, 3, 3]):
+        입력값 = iter(["pobi,woni", "2"])
+        with patch('builtins.input', side_effect=입력값):
+            main()  # 프로그램 실행
+
+        캡처된_출력 = capsys.readouterr()
+        assert "pobi : -" in 캡처된_출력.out
+        assert "woni : -" in 캡처된_출력.out
+        assert "최종 우승자 : pobi, woni" in 캡처된_출력.out
+
+# 잘못된 시도 횟수 입력 테스트
+def test_잘못된_시도_횟수():
+    """
+    시도 횟수가 1 미만일 때 예외가 발생하는지 테스트합니다.
+    """
+    with pytest.raises(ValueError):
+        입력값 = iter(["pobi,woni", "0"])
+        with patch('builtins.input', side_effect=입력값):
+            main()  # 프로그램 실행
+
+# 공동 우승자 출력 테스트
+def test_공동_우승자_출력(capsys):
+    """
+    두 명 이상의 자동차가 같은 거리를 이동했을 때 공동 우승자가 출력되는지 테스트합니다.
+    """
+    with patch('random.randint', side_effect=[4, 4, 4, 4]):
+        입력값 = iter(["pobi,woni", "2"])
+        with patch('builtins.input', side_effect=입력값):
+            main()  # 프로그램 실행
+        
+        캡처된_출력 = capsys.readouterr()
+        assert "pobi : --" in 캡처된_출력.out
+        assert "woni : --" in 캡처된_출력.out
+        assert "최종 우승자 : pobi, woni" in 캡처된_출력.out
