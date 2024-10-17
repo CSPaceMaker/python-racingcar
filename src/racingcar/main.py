@@ -45,9 +45,15 @@ def main():
     # 프로그램의 메인 로직을 여기에 구현
     print("프로그램이 시작되었습니다.")
 
-    InputHandler.get_car_names()
-    InputHandler.get_attempts()
-
+    try:
+        car_names = InputHandler.get_car_names()
+    except ValueError:
+        return
+    
+    try:
+        InputHandler.get_attempts()
+    except ValueError:
+        return
 
 if __name__ == "__main__":
     # 프로그램이 직접 실행될 때만 main() 함수를 호출
